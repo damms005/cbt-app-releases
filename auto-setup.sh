@@ -24,9 +24,12 @@ if [ "$ARCH" == "aarch64" ]; then
     # aarch64 corresponds to arm64 AppImage
     echo "Detected architecture: aarch64 (Using arm64 AppImage)"
     arch_type="arm64"
+elif [ "$ARCH" == "x86_64" ]; then
+    # x86_64 should use empty string for native AppImage
+    echo "Detected architecture: x86_64 (Using native AppImage)"
+    arch_type=""
 else
-    # For other architectures like x86_64, use the native architecture
-    echo "Detected architecture: $ARCH"
+    echo "Detected architecture: $ARCH (Using $ARCH AppImage)"
     arch_type="$ARCH"
 fi
 
@@ -52,7 +55,7 @@ echo "Launching CBT Deployer..."
 "$INSTALL_DIR/CBT-Deployer.AppImage" &
 
 # Conspicuous completion message with installation path. We 
-# initially made thie a shortcut app, but the app weirdly was not 
+# initially made this a shortcut app, but the app weirdly was not 
 # working in the Ubuntu 24.04 qemu macos UTM app virtualization that 
 # I used for the testing, neither does directly clicking the icon from
 # nautilus (in this case it was a weird error in the app after providing
