@@ -35,7 +35,7 @@ fi
 
 # Fetch the list of all releases and find the latest release with the correct AppImage
 echo "Fetching the latest CBT Deployer release..."
-latest_release_url=$(curl -s https://api.github.com/repos/damms005/cbt-docker-app-deployer-releases/releases | grep "browser_download_url.*$arch_type.AppImage" | head -n 1 | cut -d '"' -f 4)
+latest_release_url=$(wget -q -qO- https://api.github.com/repos/damms005/cbt-docker-app-deployer-releases/releases | grep "browser_download_url.*$arch_type.AppImage" | head -n 1 | cut -d '"' -f 4)
 
 # Download the latest CBT Deployer to the cbt-app directory
 if [ -n "$latest_release_url" ]; then
